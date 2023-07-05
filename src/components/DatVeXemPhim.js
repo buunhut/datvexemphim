@@ -100,14 +100,21 @@ class DatVeXemPhim extends Component {
           </div>
           <div id="myList">
             <h2>Số lượng ghế bạn chọn: {soLuongGheDaChon.toLocaleString()}</h2>
-            <div id="xacNhan">
-              <button
-                type="button"
-                onClick={this.handleXacNhan}
-                style={{
-                  display: `${soLuongGheDaChon === 0 ? "none" : "block"}`,
-                }}
-              >
+            <div
+              id="xacNhan"
+              style={{
+                display: `${soLuongGheDaChon === 0 ? "none" : "block"}`,
+              }}
+            >
+              <div>
+                <form action="">
+                  <div id="formInput">
+                    <input type="text" placeholder="Tên khách hàng" />
+                    <input type="text" placeholder="Số điện thoại" />
+                  </div>
+                </form>
+              </div>
+              <button type="button" onClick={this.handleXacNhan}>
                 Xác nhận Thanh Toán
               </button>
             </div>
@@ -147,7 +154,7 @@ class DatVeXemPhim extends Component {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Tổng tiền</th>
+                    <th>Tổng tiền:</th>
                     <th>{tongTien.toLocaleString()}</th>
                     <th></th>
                   </tr>

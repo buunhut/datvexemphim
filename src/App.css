@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .container {
   width: 1140px;
   margin: 0 auto;
@@ -97,6 +102,9 @@
   margin: 20px auto;
   border-radius: 50%;
 }
+#myList h2 {
+  width: 400px;
+}
 
 table#myTable {
   border-collapse: collapse;
@@ -104,7 +112,7 @@ table#myTable {
   margin-top: 20px;
 }
 #myTable thead tr th {
-  background-color: rgb(13, 12, 12);
+  background-color: rgb(50, 50, 50);
   color: white;
   height: 30px;
 }
@@ -128,7 +136,7 @@ table#myTable {
   background-color: rgb(237, 237, 237);
 }
 #myTable tfoot tr th {
-  background-color: rgb(13, 12, 12);
+  background-color: rgb(50, 50, 50);
   color: white;
   height: 30px;
 }
@@ -137,6 +145,8 @@ table#myTable {
 }
 #myTable .huyGhe {
   background-color: red;
+  width: 20px;
+  height: 20px;
   color: white;
   border: none;
   cursor: pointer;
@@ -160,6 +170,18 @@ table#myTable {
 #xacNhan button:hover {
   background-color: red;
 }
+#formInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#formInput input {
+  height: 30px;
+  width: 198px;
+  margin: 20px 0 0;
+  padding: 5px;
+}
+
 #huyTatCa button {
   margin-top: 30px;
   border: 1px solid blueviolet;
