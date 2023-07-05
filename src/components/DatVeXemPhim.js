@@ -9,7 +9,6 @@ class DatVeXemPhim extends Component {
     };
     this.props.dispatch(action);
   };
-
   handleHuyVe = (soGhe) => {
     const action = {
       type: "huychon",
@@ -23,18 +22,26 @@ class DatVeXemPhim extends Component {
     };
     this.props.dispatch(action);
   };
+  handleChonLai = () => {
+    const action = {
+      type: "chonlai",
+    };
+    this.props.dispatch(action);
+  };
 
   render() {
     let arrGhe = [...this.props.arrGhe];
     const danhSachGheDaChon = arrGhe
       .flatMap((hang) => hang.danhSachGhe)
       .filter((ghe) => ghe.daChon === true);
+    let soLuongGheDaChon = danhSachGheDaChon.length;
+    let tongTien = 0;
 
     return (
       <div className="container">
         <div className="content">
           <div id="datVe">
-            <div id="manHinh">Màn hình</div>
+            <div id="manHinh">Màn hình flasma 8k 900" :)</div>
             {arrGhe.map((item, index) => {
               if (item.hang === "") {
                 return (
@@ -79,37 +86,74 @@ class DatVeXemPhim extends Component {
                 );
               }
             })}
+            <div id="huyTatCa">
+              <button
+                type="button"
+                onClick={this.handleChonLai}
+                style={{
+                  display: `${soLuongGheDaChon === 0 ? "none" : "block"}`,
+                }}
+              >
+                Tôi muốn chọn lại
+              </button>
+            </div>
           </div>
-          <div>
-            <h1>Số ghế bạn đã chọn</h1>
-            <table>
-              <thead>
-                <tr>
-                  <th>Mã Ghế</th>
-                  <th>Giá tiền</th>
-                  <th>Hủy</th>
-                </tr>
-              </thead>
-              <tbody>
-                {danhSachGheDaChon.map((item, index) => {
-                  let { soGhe, gia } = item;
-                  return (
-                    <tr key={index}>
-                      <td>{soGhe}</td>
-                      <td>{gia}</td>
-                      <td>
-                        <button onClick={() => this.handleHuyVe(item)}>
-                          x
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <button type="button" onClick={this.handleXacNhan}>
-              Xác nhận Thanh Toán
-            </button>
+          <div id="myList">
+            <h2>Số lượng ghế bạn chọn: {soLuongGheDaChon.toLocaleString()}</h2>
+            <div id="xacNhan">
+              <button
+                type="button"
+                onClick={this.handleXacNhan}
+                style={{
+                  display: `${soLuongGheDaChon === 0 ? "none" : "block"}`,
+                }}
+              >
+                Xác nhận Thanh Toán
+              </button>
+            </div>
+            <div
+              style={{
+                display: `${soLuongGheDaChon === 0 ? "none" : "block"}`,
+              }}
+            >
+              <table id="myTable" style={{}}>
+                <thead>
+                  <tr>
+                    <th>Mã Ghế</th>
+                    <th>Giá tiền</th>
+                    <th>Hủy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {danhSachGheDaChon.map((item, index) => {
+                    let { soGhe, gia } = item;
+                    tongTien += gia;
+
+                    return (
+                      <tr key={index}>
+                        <td>{soGhe}</td>
+                        <td>{gia.toLocaleString()}</td>
+                        <td>
+                          <button
+                            onClick={() => this.handleHuyVe(item)}
+                            className="huyGhe"
+                          >
+                            x
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Tổng tiền</th>
+                    <th>{tongTien.toLocaleString()}</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </div>
       </div>

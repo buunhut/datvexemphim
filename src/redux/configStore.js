@@ -75,6 +75,25 @@ export const store = configureStore({
             let newDanhSachGhe = hang.danhSachGhe.map((ghe) => ({
               ...ghe,
               daDat: ghe.daChon ? true : ghe.daDat,
+              daChon: false,
+            }));
+
+            return {
+              ...hang,
+              danhSachGhe: newDanhSachGhe,
+            };
+          });
+
+          return {
+            ...state,
+            arrGhe: newArrGhe,
+          };
+        }
+        case "chonlai": {
+          let newArrGhe = state.arrGhe.map((hang) => {
+            let newDanhSachGhe = hang.danhSachGhe.map((ghe) => ({
+              ...ghe,
+              daChon: false,
             }));
 
             return {
