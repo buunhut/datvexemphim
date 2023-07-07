@@ -1,6 +1,7 @@
 import { toHaveAccessibleDescription } from "@testing-library/jest-dom/matchers";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import SeatList from "./SeatList";
 
 class DatVeXemPhim extends Component {
   state = {
@@ -9,6 +10,7 @@ class DatVeXemPhim extends Component {
       soDT: "",
       gio: "",
       ngay: "",
+      maDon: "",
     },
   };
 
@@ -47,16 +49,17 @@ class DatVeXemPhim extends Component {
     const giay = ngayGio.getSeconds();
     const myDay = ngay + "/" + thang + "/" + nam;
     const myTime = gio + ":" + phut + ":" + giay;
+    const myId = "#" + myTime.split(":").join("") + myDay.split("/").join("");
     const khachHang = {
       ...this.state.khachHang,
       ngay: myDay,
       gio: myTime,
+      maDon: myId,
     };
 
     this.setState({
       khachHang,
     });
-    console.log(khachHang);
     const action = {
       type: "xacnhan",
       payload: khachHang,
@@ -78,7 +81,6 @@ class DatVeXemPhim extends Component {
           ghe.khachHang === this.state.khachHang.ten &&
           ghe.gio === this.state.khachHang.gio
       );
-    // console.log(khachHangDat);
 
     let arrGhe = [...this.props.arrGhe];
     const danhSachGheDaChon = arrGhe
@@ -250,21 +252,24 @@ class DatVeXemPhim extends Component {
               }}
             >
               <h3>Đặt chỗ thành công</h3>
-              <p>
+              <p
+                style={{
+                  padding: "4px 0",
+                  color: "red",
+                  textAlign: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                Mã đơn: {khachHangDat.length > 0 ? khachHangDat[0].maDon : ""}
+              </p>
+              <p style={{ borderBottom: "1px solid silver", padding: "4px 0" }}>
                 Khách hàng:{" "}
                 {khachHangDat.length > 0 ? khachHangDat[0].khachHang : ""}
               </p>
-              <p>
+              <p style={{ borderBottom: "1px solid silver", padding: "4px 0" }}>
                 Số ĐT: {khachHangDat.length > 0 ? khachHangDat[0].soDT : ""}
               </p>
-              <span>
-                Mã đơn:{" "}
-                {khachHangDat.length > 0
-                  ? "#" +
-                    khachHangDat[0].gio.split(":").join("") +
-                    khachHangDat[0].ngay.split("/").join("")
-                  : ""}
-              </span>
+
               <table>
                 <thead>
                   <tr>
@@ -294,6 +299,9 @@ class DatVeXemPhim extends Component {
               </table>
             </div>
           </div>
+        </div>
+        <div>
+          <SeatList seats={this.props.arrGhe} />
         </div>
       </div>
     );

@@ -291,7 +291,7 @@ table#myTable {
 }
 #khachDatVe h3 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 10px;
 }
 #khachDatVe p {
   color: blueviolet;
@@ -299,11 +299,13 @@ table#myTable {
 }
 #khachDatVe table {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 5px;
   text-align: center;
   border-collapse: collapse;
 }
-
+#khachDatVe table tbody tr:nth-child(even) {
+  background-color: rgb(237, 237, 237);
+}
 #khachDatVe table tr th {
   background-color: rgb(50, 50, 50);
   color: white;

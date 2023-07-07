@@ -27,24 +27,6 @@ export const store = configureStore({
           };
         }
         case "xacnhan": {
-          // let newArrGhe = state.arrGhe.map((hang) => {
-          //   let newDanhSachGhe = hang.danhSachGhe.map((ghe) => ({
-          //     ...ghe,
-          //     daDat: ghe.daChon ? true : ghe.daDat,
-          //     khachHang: action.payload.ten,
-          //     soDT: action.payload.soDT,
-          //     daChon: false,
-          //   }));
-          //   return {
-          //     ...hang,
-          //     danhSachGhe: newDanhSachGhe,
-          //   };
-          // });
-          // return {
-          //   ...state,
-          //   arrGhe: newArrGhe,
-          // };
-          console.log(action.payload);
           const newArrGhe = state.arrGhe.map((hang) => {
             const updateddanhSachGhe = hang.danhSachGhe.map((ghe) => {
               if (ghe.daChon === true) {
@@ -56,6 +38,7 @@ export const store = configureStore({
                   soDT: action.payload.soDT,
                   gio: action.payload.gio,
                   ngay: action.payload.ngay,
+                  maDon: action.payload.maDon,
                 };
               }
               return ghe;
