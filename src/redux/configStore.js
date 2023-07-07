@@ -2,7 +2,6 @@ import data from "../danhSachGhe.json";
 import { configureStore } from "@reduxjs/toolkit";
 const initialState = {
   arrGhe: data,
-  arrGheDaChon: [],
 };
 
 export const store = configureStore({
@@ -10,83 +9,62 @@ export const store = configureStore({
     duLieu: (state = initialState, action) => {
       switch (action.type) {
         case "ghedachon": {
-          let item = action.payload;
-          let hang = item.soGhe.charAt(0);
-          let viTriHang = state.arrGhe.findIndex((item) => item.hang === hang);
-          let viTriGhe = state.arrGhe[viTriHang].danhSachGhe.findIndex(
-            (ghe) => ghe.soGhe === item.soGhe
-          );
-          let gheDaChon = {
-            ...item,
-            daChon: !item.daChon,
-          };
-
-          let newarrGhe = [...state.arrGhe];
-          let newDanhSachGhe = [...newarrGhe[viTriHang].danhSachGhe];
-          // Thay thế ghế trong danhSachGhe mới
-          newDanhSachGhe[viTriGhe] = gheDaChon;
-          // Thay thế danhSachGhe mới trong arrGhe
-          newarrGhe[viTriHang] = {
-            ...newarrGhe[viTriHang],
-            danhSachGhe: newDanhSachGhe,
-          };
-
+          const newArrGhe = state.arrGhe.map((hang) => {
+            const updateddanhSachGhe = hang.danhSachGhe.map((ghe) => {
+              if (
+                ghe.soGhe === action.payload.soGhe &&
+                ghe.gio === action.payload.gio
+              ) {
+                return { ...ghe, daChon: !ghe.daChon };
+              }
+              return ghe;
+            });
+            return { ...hang, danhSachGhe: updateddanhSachGhe };
+          });
           return {
             ...state,
-            arrGhe: newarrGhe, // Cập nhật arrGhe mới
-          };
-        }
-        case "huychon": {
-          let arrGheDaChon = [...state.arrGheDaChon];
-
-          let viTri = arrGheDaChon.findIndex(
-            (item) => item.soGhe === action.payload.soGhe
-          );
-          arrGheDaChon.splice(viTri, 1);
-
-          let item = action.payload;
-          let hang = item.soGhe.charAt(0);
-          let viTriHang = state.arrGhe.findIndex((item) => item.hang === hang);
-          let viTriGhe = state.arrGhe[viTriHang].danhSachGhe.findIndex(
-            (ghe) => ghe.soGhe === item.soGhe
-          );
-          let gheDaChon = {
-            ...item,
-            daChon: !item.daChon,
-          };
-
-          let newarrGhe = [...state.arrGhe];
-          let newDanhSachGhe = [...newarrGhe[viTriHang].danhSachGhe];
-          // Thay thế ghế trong danhSachGhe mới
-          newDanhSachGhe[viTriGhe] = gheDaChon;
-          // Thay thế danhSachGhe mới trong arrGhe
-          newarrGhe[viTriHang] = {
-            ...newarrGhe[viTriHang],
-            danhSachGhe: newDanhSachGhe,
-          };
-
-          return {
-            ...state,
-            arrGhe: newarrGhe, // Cập nhật arrGhe mới
+            arrGhe: newArrGhe, // Cập nhật arrGhe mới
           };
         }
         case "xacnhan": {
-          let newArrGhe = state.arrGhe.map((hang) => {
-            let newDanhSachGhe = hang.danhSachGhe.map((ghe) => ({
-              ...ghe,
-              daDat: ghe.daChon ? true : ghe.daDat,
-              daChon: false,
-            }));
-
-            return {
-              ...hang,
-              danhSachGhe: newDanhSachGhe,
-            };
+          // let newArrGhe = state.arrGhe.map((hang) => {
+          //   let newDanhSachGhe = hang.danhSachGhe.map((ghe) => ({
+          //     ...ghe,
+          //     daDat: ghe.daChon ? true : ghe.daDat,
+          //     khachHang: action.payload.ten,
+          //     soDT: action.payload.soDT,
+          //     daChon: false,
+          //   }));
+          //   return {
+          //     ...hang,
+          //     danhSachGhe: newDanhSachGhe,
+          //   };
+          // });
+          // return {
+          //   ...state,
+          //   arrGhe: newArrGhe,
+          // };
+          console.log(action.payload);
+          const newArrGhe = state.arrGhe.map((hang) => {
+            const updateddanhSachGhe = hang.danhSachGhe.map((ghe) => {
+              if (ghe.daChon === true) {
+                return {
+                  ...ghe,
+                  daDat: true,
+                  daChon: false,
+                  khachHang: action.payload.ten,
+                  soDT: action.payload.soDT,
+                  gio: action.payload.gio,
+                  ngay: action.payload.ngay,
+                };
+              }
+              return ghe;
+            });
+            return { ...hang, danhSachGhe: updateddanhSachGhe };
           });
-
           return {
             ...state,
-            arrGhe: newArrGhe,
+            arrGhe: newArrGhe, // Cập nhật arrGhe mới
           };
         }
         case "chonlai": {

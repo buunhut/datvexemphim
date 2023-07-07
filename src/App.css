@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .container {
-  width: 1140px;
+  width: 1130px;
   margin: 0 auto;
 }
 .content {
@@ -13,32 +13,32 @@
   justify-content: space-between;
 }
 #datVe .hang {
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   margin-top: 5px;
 }
 #datVe .hangTitle {
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   margin-top: 5px;
 }
 #datVe .hangTitle .hangTitleItem {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
   color: white;
   margin-right: 5px;
 }
 #datVe .hangTitle .soGhe {
-  height: 40px;
-  width: 40px;
-  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
   background-color: blueviolet;
   color: white;
   margin: 0 5px;
@@ -47,37 +47,39 @@
   background-color: yellow;
   border-radius: 5px;
   color: white;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin: 0 5px;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
+  font-size: 12px;
 }
 #datVe .hang .soGheDaDat {
   background-color: red;
   border-radius: 5px;
   color: white;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin: 0 5px;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
+  font-size: 12px;
 }
 
 #datVe .hang .hangItem {
-  height: 40px;
-  width: 40px;
-  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  font-size: 12px;
   font-weight: bold;
   background-color: blueviolet;
   color: white;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
   margin-right: 5px;
 }
 #datVe .hang button {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin: 0 5px;
   border: 1px solid blueviolet;
   border-radius: 5px;
@@ -102,14 +104,11 @@
   margin: 20px auto;
   border-radius: 50%;
 }
-#myList h2 {
-  width: 400px;
-}
-
 table#myTable {
   border-collapse: collapse;
   width: 400px;
-  margin-top: 20px;
+  margin: 20px auto 0;
+  font-size: 12px;
 }
 #myTable thead tr th {
   background-color: rgb(50, 50, 50);
@@ -156,8 +155,40 @@ table#myTable {
   background-color: blueviolet;
 }
 
+#myList {
+  width: 430px;
+  max-height: 620px;
+  overflow-y: auto;
+}
+#myList .gioHang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+  height: 80px;
+  margin: 0 auto;
+}
+#myList .gioHang .gioHangContent {
+  color: blueviolet;
+  font-size: 60px;
+  position: relative;
+}
+#myList .gioHang .soLuong {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+}
+#xacNhan {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #xacNhan button {
-  margin-top: 10px;
+  margin-top: 5px;
   background-color: blueviolet;
   color: white;
   border: none;
@@ -170,26 +201,35 @@ table#myTable {
 #xacNhan button:hover {
   background-color: red;
 }
+
+#xacNhanContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
 #formInput {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid silver;
 }
 #formInput input {
   height: 30px;
-  width: 198px;
-  margin: 20px 0 0;
+  width: 300px;
+  margin: 5px 0 0 5px;
   padding: 5px;
+  border: none;
+  outline: none;
 }
 
 #huyTatCa button {
-  margin-top: 30px;
   border: 1px solid blueviolet;
   color: blueviolet;
   background-color: transparent;
   cursor: pointer;
-  width: 100%;
   height: 34px;
+  padding: 0 20px;
   font-weight: 600;
   transition: all 0.3s;
 }
@@ -197,4 +237,86 @@ table#myTable {
   background-color: red;
   color: white;
   border: none;
+}
+
+#ghiChu {
+  margin: 20px 0;
+  text-align: right;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+#ghiChu span {
+  margin: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+#ghiChu .gheTrong::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid blueviolet;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+#ghiChu .daChon::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: yellow;
+  border: 1px solid blueviolet;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+#ghiChu .daDat::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  border: 1px solid blueviolet;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+#khachDatVe {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+#khachDatVe h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#khachDatVe p {
+  color: blueviolet;
+  margin-bottom: 5px;
+}
+#khachDatVe table {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+#khachDatVe table tr th {
+  background-color: rgb(50, 50, 50);
+  color: white;
+  padding: 5px 0;
+}
+#khachDatVe table tr th:last-child {
+  text-align: right;
+  padding-right: 20px;
+}
+#khachDatVe table tr td {
+  padding: 5px 0;
+}
+#khachDatVe table tr td:last-child {
+  text-align: right;
+  padding-right: 20px;
 }
